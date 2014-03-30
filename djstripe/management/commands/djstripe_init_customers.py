@@ -11,7 +11,7 @@ class Command(BaseCommand):
     help = "Create customer objects for existing users that don't have one"
 
     def handle(self, *args, **options):
-        for user in User.objects.filter(customer__isnull=True):
+        for user in User.objects.all():
             # use get_or_create in case of race conditions on large
             #      user bases
             Customer.get_or_create(user=user)
